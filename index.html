@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Typewriter Loop</title>
+  <title>UAGO</title>
   <style>
     body {
       background: #000;
@@ -12,7 +12,7 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      gap: 20px;
+      gap: 40px;
     }
 
     h1 {
@@ -22,11 +22,8 @@
       background-size: 400% 400%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 3px solid hotpink;
-      width: 0;
-      animation: gradientFade 5s ease infinite, blink 0.75s step-end infinite;
+      animation: gradientFade 5s ease infinite;
+      margin: 0;
     }
 
     @keyframes gradientFade {
@@ -34,70 +31,13 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
-    @keyframes typing {
-      0% { width: 0; }
-      40% { width: var(--length); }
-      60% { width: var(--length); }
-      100% { width: 0; }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
-    }
-
-    /* Each line types and clears at different times */
-    h1:nth-child(1) {
-      --length: 11ch; /* hello world */
-      animation: typing 5s steps(11, end) infinite,
-                 gradientFade 5s ease infinite,
-                 blink 0.75s step-end infinite;
-      animation-delay: 0s;
-    }
-
-    h1:nth-child(2) {
-      --length: 15ch; /* this is line two */
-      animation: typing 5s steps(15, end) infinite,
-                 gradientFade 5s ease infinite,
-                 blink 0.75s step-end infinite;
-      animation-delay: 5s;
-    }
-
-    h1:nth-child(3) {
-      --length: 14ch; /* and line three */
-      animation: typing 5s steps(14, end) infinite,
-                 gradientFade 5s ease infinite,
-                 blink 0.75s step-end infinite;
-      animation-delay: 10s;
-    }
-
-    h1:nth-child(4) {
-      --length: 16ch; /* final line here */
-      animation: typing 5s steps(16, end) infinite,
-                 gradientFade 5s ease infinite,
-                 blink 0.75s step-end infinite;
-      animation-delay: 15s;
-    }
-
-    h1:nth-child(5) {
-      --length: 13ch; /* fifth line text */
-      animation: typing 5s steps(13, end) infinite,
-                 gradientFade 5s ease infinite,
-                 blink 0.75s step-end infinite;
-      animation-delay: 20s;
-    }
-
-    /* Sync the full cycle (5 lines × 5s = 25s) */
-    h1 {
-      animation-duration: 25s;
-    }
   </style>
 </head>
 <body>
   <h1>hello world!</h1>
   <h1>I'm UAGO aka January</h1>
-  <h1>I code in html, css and js</h1>
-  <h1>You can contact me via tg and dicord</h1>
-  <h1>@uag0 on discord and t.me/menthol100ss</h1>
+  <h1>I code in HTML, CSS, and JS</h1>
+  <h1>You can contact me via tg and discord</h1>
+  <h1>@uag0 on Discord, @menthol100ss on tg</h1>
 </body>
 </html>
