@@ -15,7 +15,7 @@
       gap: 40px;
     }
 
-    h1 {
+    h1, #counter {
       font-size: 3em;
       font-family: sans-serif;
       background: linear-gradient(270deg, hotpink, purple);
@@ -24,14 +24,12 @@
       -webkit-text-fill-color: transparent;
       animation: gradientFade 5s ease infinite;
       margin: 0;
+      text-align: center;
     }
 
     #counter {
-      font-size: 1.5em;
-      color: white;
-      font-family: monospace;
-      margin-top: 20px;
-      opacity: 0.8;
+      font-size: 2em;
+      margin-top: 30px;
     }
 
     @keyframes gradientFade {
@@ -48,25 +46,21 @@
   <h1>You can contact me via tg and discord</h1>
   <h1>@uag0 on Discord, @menthol100ss on tg</h1>
 
-  <div id="counter">Views: 0</div>
+  <h1 id="counter">Views: ...</h1>
 
   <script>
-    // Get the counter element
-    const counter = document.getElementById("counter");
+    // Replace "uago-site" with your own unique namespace if you want a private counter
+    const counterElement = document.getElementById("counter");
 
-    // Load or initialize the view count
-    let views = localStorage.getItem("uago_views");
-    if (!views) {
-      views = 1;
-    } else {
-      views = parseInt(views) + 1;
-    }
-
-    // Save it back to localStorage
-    localStorage.setItem("uago_views", views);
-
-    // Display it
-    counter.textContent = `Views: ${views}`;
+    // Increment and fetch global count
+    fetch('https://api.countapi.xyz/hit/uago-site/views')
+      .then(res => res.json())
+      .then(data => {
+        counterElement.textContent = `Views: ${data.value}`;
+      })
+      .catch(() => {
+        counterElement.textContent = "Views: error";
+      });
   </script>
 </body>
 </html>
