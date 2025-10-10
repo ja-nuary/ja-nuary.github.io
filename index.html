@@ -28,9 +28,10 @@
       text-align: center;
     }
 
-    #counter {
-      font-size: 2em;
-      margin-top: 20px;
+    #counter img {
+      vertical-align: middle;
+      margin-left: 10px;
+      height: 2em; /* adjust badge size */
     }
 
     @keyframes gradientFade {
@@ -47,30 +48,9 @@
   <h1>You can contact me via tg and discord</h1>
   <h1>@uag0 on Discord, @menthol100ss on tg</h1>
 
-  <h1 id="counter">Views: ...</h1>
-
-  <script>
-    const counter = document.getElementById("counter");
-
-    // Create or increment a counter under your unique key
-    // Change "uago-site" to anything unique (e.g., "uago-github-pages")
-    const namespace = "uago-github-pages";
-    const key = "visits";
-    const url = `https://api.countapi.xyz/hit/${namespace}/${key}`;
-
-    async function updateCounter() {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Network error");
-        const data = await response.json();
-        counter.textContent = `Views: ${data.value}`;
-      } catch (err) {
-        console.error("View counter error:", err);
-        counter.textContent = "Views: error loading";
-      }
-    }
-
-    updateCounter();
-  </script>
+  <h1 id="counter">
+    Views:
+    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fja-nuary.github.io&count_bg=%237b2fe0&title_bg=%23555555&icon=&icon_color=%23fff&title=Views&edge_flat=false" alt="view counter"/>
+  </h1>
 </body>
 </html>
