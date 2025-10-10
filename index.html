@@ -29,9 +29,10 @@
     text-align: center;
   }
 
-  #counter {
-    font-size: 2em;
-    margin-top: 20px;
+  #counter img {
+    vertical-align: middle;
+    margin-left: 10px;
+    height: 2em;
   }
 
   @keyframes gradientFade {
@@ -49,39 +50,9 @@
 <h1>You can contact me via tg and discord</h1>
 <h1>@uag0 on Discord, @menthol100ss on tg</h1>
 
-<h1 id="counter">Views: ...</h1>
-
-<script>
-const counterEl = document.getElementById('counter');
-const BIN_ID = '$68e889abd0ea881f409bfd95';
-const SECRET_KEY = '$2a$10$HO/5T/U1d6XaHvKOIax.cuftBkxMq6YnnpN6VYngE0ohguCUzPp1e';
-const API_URL = `https://api.jsonbin.io/v3/b/$68e889abd0ea881f409bfd95/latest`;
-
-async function updateCounter() {
-  try {
-    const res = await fetch(API_URL, { headers: { "X-Master-Key": $2a$10$HO/5T/U1d6XaHvKOIax.cuftBkxMq6YnnpN6VYngE0ohguCUzPp1e } });
-    const data = await res.json();
-    let views = data.record.views || 0;
-    views += 1;
-    await fetch(`https://api.jsonbin.io/v3/b/$68e889abd0ea881f409bfd95`, {
-      method: 'PUT',
-      headers: {
-        "Content-Type": "application/json",
-        "X-Master-Key": SECRET_KEY,
-        "X-Bin-Versioning": "false"
-      },
-      body: JSON.stringify({ views })
-    });
-    counterEl.textContent = `Views: ${views}`;
-  } catch (err) {
-    console.error('Counter error:', err);
-    counterEl.textContent = 'Views: error';
-  }
-}
-
-updateCounter();
-setInterval(updateCounter, 10000);
-</script>
+<h1 id="counter">Views:
+  <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fja-nuary.github.io&count_bg=%237b2fe0&title_bg=%23555555&icon=&icon_color=%23fff&title=Views&edge_flat=false" alt="view counter">
+</h1>
 
 </body>
 </html>
