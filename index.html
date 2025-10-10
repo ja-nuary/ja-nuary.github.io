@@ -53,8 +53,9 @@
 
 <script>
 const counterEl = document.getElementById('counter');
-const url = 'https://hits.seeyoufarm.com/api/count/incr?url=https%3A%2F%2Fja-nuary.github.io&format=json';
 let currentValue = 0;
+const encodedUrl = encodeURIComponent('https://ja-nuary.github.io');
+const url = `https://hits.seeyoufarm.com/api/count/incr?url=${encodedUrl}&format=json`;
 
 async function fetchCounter() {
   try {
