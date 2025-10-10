@@ -1,56 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>UAGO</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      background: #000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      gap: 40px;
-    }
+<meta charset="UTF-8">
+<title>UAGO</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    gap: 40px;
+    padding: 20px;
+  }
 
-    h1, #counter {
-      font-size: 3em;
-      font-family: sans-serif;
-      background: linear-gradient(270deg, hotpink, purple);
-      background-size: 400% 400%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientFade 5s ease infinite;
-      margin: 0;
-      text-align: center;
-    }
+  h1, #counter {
+    font-size: 3em;
+    font-family: sans-serif;
+    background: linear-gradient(270deg, hotpink, purple);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFade 5s ease infinite;
+    margin: 0;
+    text-align: center;
+  }
 
-    #counter img {
-      vertical-align: middle;
-      margin-left: 15px;
-      height: 2em;
-    }
+  #counter {
+    font-size: 2em;
+    margin-top: 20px;
+  }
 
-    @keyframes gradientFade {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-  </style>
+  @keyframes gradientFade {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+</style>
 </head>
 <body>
-  <h1>hello world!</h1>
-  <h1>I'm UAGO aka January</h1>
-  <h1>I code in HTML, CSS, and JS</h1>
-  <h1>You can contact me via tg and discord</h1>
-  <h1>@uag0 on Discord, @menthol100ss on tg</h1>
 
-  <h1 id="counter">
-    Views:
-    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fja-nuary.github.io&count_bg=%237b2fe0&title_bg=%23555555&icon=&icon_color=%23fff&title=Views&edge_flat=false" alt="view counter"/>
-  </h1>
+<h1>hello world!</h1>
+<h1>I'm UAGO aka January</h1>
+<h1>I code in HTML, CSS, and JS</h1>
+<h1>You can contact me via tg and discord</h1>
+<h1>@uag0 on Discord, @menthol100ss on tg</h1>
+
+<h1 id="counter">Views: ...</h1>
+
+<script>
+const counterEl = document.getElementById('counter');
+const BIN_ID = '$68e889abd0ea881f409bfd95';
+const SECRET_KEY = '$2a$10$HO/5T/U1d6XaHvKOIax.cuftBkxMq6YnnpN6VYngE0ohguCUzPp1e';
+const API_URL = `https://api.jsonbin.io/v3/b/$68e889abd0ea881f409bfd95/latest`;
+
+async function updateCounter() {
+  try {
+    const res = await fetch(API_URL, { headers: { "X-Master-Key": $2a$10$HO/5T/U1d6XaHvKOIax.cuftBkxMq6YnnpN6VYngE0ohguCUzPp1e } });
+    const data = await res.json();
+    let views = data.record.views || 0;
+    views += 1;
+    await fetch(`https://api.jsonbin.io/v3/b/$68e889abd0ea881f409bfd95`, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": SECRET_KEY,
+        "X-Bin-Versioning": "false"
+      },
+      body: JSON.stringify({ views })
+    });
+    counterEl.textContent = `Views: ${views}`;
+  } catch (err) {
+    console.error('Counter error:', err);
+    counterEl.textContent = 'Views: error';
+  }
+}
+
+updateCounter();
+setInterval(updateCounter, 10000);
+</script>
+
 </body>
 </html>
