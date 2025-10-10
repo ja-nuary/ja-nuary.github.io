@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>UAGO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       background: #000;
@@ -29,7 +30,7 @@
 
     #counter {
       font-size: 2em;
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     @keyframes gradientFade {
@@ -49,17 +50,27 @@
   <h1 id="counter">Views: ...</h1>
 
   <script>
-    const counterElement = document.getElementById("counter");
+    const counter = document.getElementById("counter");
 
-    fetch('https://api.countapi.xyz/hit/uago-site/views')
-      .then(res => res.json())
-      .then(data => {
-        counterElement.textContent = `Views: ${data.value}`;
-      })
-      .catch(() => {
-        counterElement.textContent = "Views: error";
-      });
+    // Create or increment a counter under your unique key
+    // Change "uago-site" to anything unique (e.g., "uago-github-pages")
+    const namespace = "uago-github-pages";
+    const key = "visits";
+    const url = `https://api.countapi.xyz/hit/${namespace}/${key}`;
+
+    async function updateCounter() {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Network error");
+        const data = await response.json();
+        counter.textContent = `Views: ${data.value}`;
+      } catch (err) {
+        console.error("View counter error:", err);
+        counter.textContent = "Views: error loading";
+      }
+    }
+
+    updateCounter();
   </script>
 </body>
 </html>
-
