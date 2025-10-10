@@ -15,18 +15,19 @@
     margin: 0;
     gap: 40px;
     padding: 20px;
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
   }
 
-  h1, #counter {
+  h1 {
     font-size: 3em;
-    font-family: sans-serif;
     background: linear-gradient(270deg, hotpink, purple);
     background-size: 400% 400%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientFade 5s ease infinite;
     margin: 0;
-    text-align: center;
   }
 
   #counter {
@@ -53,36 +54,38 @@
 
 <script>
 const counterEl = document.getElementById('counter');
-const namespace = 'January-site'; 
-const key = 'views';            
-const url = `https://api.countapi.xyz/hit/$January-site/$views`;
-
+const url = 'https://api.countapi.xyz/hit/January-site/views';
 let currentValue = 0;
 
-async function updateCounter() {
+async function fetchCounter() {
   try {
     const res = await fetch(url);
     const data = await res.json();
-    const targetValue = data.value;
-
-    const step = Math.ceil(Math.abs(targetValue - currentValue) / 20) || 1;
-    const interval = setInterval(() => {
-      if (currentValue < targetValue) {
-        currentValue += step;
-        if (currentValue > targetValue) currentValue = targetValue;
-        counterEl.textContent = `Views: ${currentValue}`;
-      } else {
-        clearInterval(interval);
-      }
-    }, 25);
-
-  } catch (err) {
-    console.error('Counter error:', err);
+    return data.value;
+  } catch {
     counterEl.textContent = 'Views: error';
+    return null;
   }
 }
 
+function animateCounter(target) {
+  const step = Math.ceil(Math.abs(target - currentValue) / 20) || 1;
+  const interval = setInterval(() => {
+    if (currentValue === target) return clearInterval(interval);
+    currentValue += currentValue < target ? step : -step;
+    if ((currentValue < target && currentValue > target) ||
+        (currentValue > target && currentValue < target)) currentValue = target;
+    counterEl.textContent = `Views: ${currentValue}`;
+  }, 25);
+}
+
+async function updateCounter() {
+  const target = await fetchCounter();
+  if (target !== null) animateCounter(target);
+}
+
 updateCounter();
+setInterval(updateCounter, 10000);
 </script>
 
 </body>
