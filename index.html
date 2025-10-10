@@ -49,10 +49,8 @@
   <h1 id="counter">Views: ...</h1>
 
   <script>
-    // Replace "uago-site" with your own unique namespace if you want a private counter
     const counterElement = document.getElementById("counter");
 
-    // Increment and fetch global count
     fetch('https://api.countapi.xyz/hit/uago-site/views')
       .then(res => res.json())
       .then(data => {
@@ -64,3 +62,4 @@
   </script>
 </body>
 </html>
+
