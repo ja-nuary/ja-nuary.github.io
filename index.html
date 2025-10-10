@@ -26,6 +26,14 @@
       margin: 0;
     }
 
+    #counter {
+      font-size: 1.5em;
+      color: white;
+      font-family: monospace;
+      margin-top: 20px;
+      opacity: 0.8;
+    }
+
     @keyframes gradientFade {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -39,5 +47,26 @@
   <h1>I code in HTML, CSS, and JS</h1>
   <h1>You can contact me via tg and discord</h1>
   <h1>@uag0 on Discord, @menthol100ss on tg</h1>
+
+  <div id="counter">Views: 0</div>
+
+  <script>
+    // Get the counter element
+    const counter = document.getElementById("counter");
+
+    // Load or initialize the view count
+    let views = localStorage.getItem("uago_views");
+    if (!views) {
+      views = 1;
+    } else {
+      views = parseInt(views) + 1;
+    }
+
+    // Save it back to localStorage
+    localStorage.setItem("uago_views", views);
+
+    // Display it
+    counter.textContent = `Views: ${views}`;
+  </script>
 </body>
 </html>
