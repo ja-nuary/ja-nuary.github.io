@@ -29,10 +29,9 @@
     text-align: center;
   }
 
-  #counter img {
-    vertical-align: middle;
-    margin-left: 10px;
-    height: 2em;
+  #counter {
+    font-size: 2em;
+    margin-top: 20px;
   }
 
   @keyframes gradientFade {
@@ -50,9 +49,41 @@
 <h1>You can contact me via tg and discord</h1>
 <h1>@uag0 on Discord, @menthol100ss on tg</h1>
 
-<h1 id="counter">Views:
-  <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fja-nuary.github.io&count_bg=%237b2fe0&title_bg=%23555555&icon=&icon_color=%23fff&title=Views&edge_flat=false" alt="view counter">
-</h1>
+<h1 id="counter">Views: 0</h1>
+
+<script>
+const counterEl = document.getElementById('counter');
+const namespace = 'January-site'; 
+const key = 'views';            
+const url = `https://api.countapi.xyz/hit/$January-site/$views`;
+
+let currentValue = 0;
+
+async function updateCounter() {
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    const targetValue = data.value;
+
+    const step = Math.ceil(Math.abs(targetValue - currentValue) / 20) || 1;
+    const interval = setInterval(() => {
+      if (currentValue < targetValue) {
+        currentValue += step;
+        if (currentValue > targetValue) currentValue = targetValue;
+        counterEl.textContent = `Views: ${currentValue}`;
+      } else {
+        clearInterval(interval);
+      }
+    }, 25);
+
+  } catch (err) {
+    console.error('Counter error:', err);
+    counterEl.textContent = 'Views: error';
+  }
+}
+
+updateCounter();
+</script>
 
 </body>
 </html>
