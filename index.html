@@ -4,14 +4,20 @@
 <meta charset="UTF-8">
 <title>UAGO</title>
 <style>
+  /* Add your DaFont fonts here manually */
   @font-face {
-    font-family: 'Neon Future';
+    font-family: 'NeonFuture';
     src: url('NeonFuture.ttf') format('truetype');
   }
 
   @font-face {
     font-family: 'Cyberpunk';
     src: url('Cyberpunk.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Hacked';
+    src: url('Hacked.ttf') format('truetype');
   }
 
   body {
@@ -28,7 +34,7 @@
 
   h1 {
     font-size: 3em;
-    font-family: 'Neon Future', sans-serif;
+    font-family: 'NeonFuture', sans-serif;
     background: linear-gradient(270deg, hotpink, purple);
     background-size: 400% 400%;
     -webkit-background-clip: text;
@@ -60,8 +66,9 @@
 </head>
 <body>
   <select id="fontPicker">
-    <option value="'Neon Future', sans-serif">Neon Future (DaFont)</option>
-    <option value="'Cyberpunk', sans-serif">Cyberpunk (DaFont)</option>
+    <option value="'NeonFuture', sans-serif">Neon Future </option>
+    <option value="'Cyberpunk', sans-serif">Cyberpunk </option>
+    <option value="'Hacked', sans-serif">Hacked </option>
     <option value="sans-serif">System Sans</option>
     <option value="serif">Serif</option>
     <option value="monospace">Monospace</option>
